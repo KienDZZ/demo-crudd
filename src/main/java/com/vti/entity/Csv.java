@@ -34,7 +34,7 @@ public class Csv {
 
 	private String createdBy;
 
-	@CreationTimestamp
+	
 	private Date updatedAt;
 
 	private String updatedBy;

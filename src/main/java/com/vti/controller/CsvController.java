@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +57,12 @@ public class CsvController {
 			@RequestBody CsvUpdateForm form) {
 		service.updateCsv(id, form);
 		return new ResponseEntity<String>("Update successfully!", HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<?> deleteCsv(@PathVariable(name="id") int id){
+		service.deleteCsv(id);
+		return new ResponseEntity<String>("delete success", HttpStatus.OK);
 	}
 
 

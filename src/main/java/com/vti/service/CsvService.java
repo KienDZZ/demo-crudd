@@ -3,6 +3,7 @@ package com.vti.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.vti.entity.Csv;
@@ -37,14 +38,11 @@ public class CsvService implements ICsvService {
 
 	@Override
 	public void updateCsv(int id, CsvUpdateForm form) {
-		try {
-			Csv csv = repository.getById(id);
-			csv.setFileName(form.getFileName());
-			csv.setLink(form.getLink());
-			repository.save(csv);
-		} catch (Exception e) {
-			throw new Error();
-		}
+
+		Csv csv = repository.getById(id);
+		csv.setFileName(form.getFileName());
+		csv.setLink(form.getLink());
+		repository.save(csv);
 
 	}
 
