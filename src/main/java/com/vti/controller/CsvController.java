@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vti.dto.Csvdto;
 import com.vti.entity.Csv;
 import com.vti.form.CsvCreateForm;
+import com.vti.form.CsvUpdateForm;
 import com.vti.service.ICsvService;
 
 @RestController
@@ -47,5 +50,13 @@ public class CsvController {
 		service.createCsv(form);
 		return new ResponseEntity<String>("create success",HttpStatus.CREATED);
 	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<?> updateCsv(@PathVariable(name = "id") int id,
+			@RequestBody CsvUpdateForm form) {
+		service.updateCsv(id, form);
+		return new ResponseEntity<String>("Update successfully!", HttpStatus.OK);
+	}
+
 
 }
