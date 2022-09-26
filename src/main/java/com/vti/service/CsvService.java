@@ -51,5 +51,9 @@ public class CsvService implements ICsvService {
 		repository.deleteById(id);
 
 	}
+	
+	public List<Csv> csvs(){
+		return repository.getAll();
+	}
 
 }

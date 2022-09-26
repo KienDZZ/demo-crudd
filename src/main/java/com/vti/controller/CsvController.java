@@ -22,6 +22,7 @@ import com.vti.dto.Csvdto;
 import com.vti.entity.Csv;
 import com.vti.form.CsvCreateForm;
 import com.vti.form.CsvUpdateForm;
+import com.vti.service.CsvService;
 import com.vti.service.ICsvService;
 
 @RestController
@@ -30,6 +31,8 @@ import com.vti.service.ICsvService;
 public class CsvController {
 	
 	@Autowired ICsvService service;
+	
+	@Autowired CsvService service2;
 	
 	@GetMapping()
 	public ResponseEntity<?> getAllCsv(){
@@ -63,6 +66,12 @@ public class CsvController {
 	public ResponseEntity<?> deleteCsv(@PathVariable(name="id") int id){
 		service.deleteCsv(id);
 		return new ResponseEntity<String>("delete success", HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "all")
+	public ResponseEntity<?> getAll(){
+		List<Csv> csvs = service2.csvs();
+		return new ResponseEntity<>(csvs, HttpStatus.OK);
 	}
 
 
